@@ -1,7 +1,7 @@
 public abstract class Character {
     public Character(int difficulty){
         this.Difficulty = difficulty;
-        this.time = 0;
+        this.tickCount = 0;
     }
     static int inRoom = 0;
 
@@ -15,7 +15,7 @@ public abstract class Character {
         return inRoom;
     }
 
-    abstract public void tick();
+    abstract public void tick(); //tick strategy
 
     public void timeIncreaseAndTick(){
         if ( this.tickCount<this.tickPeriod ){
