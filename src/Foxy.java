@@ -1,16 +1,19 @@
-public class Foxy {
+public class Foxy extends Character{
 
-	private int Difficulty;
 	static int stage = 0;
 	private boolean seen;
 	private double startTime;
-	public static boolean playerdeath = false;
 
-	private void foxy(int difficulty) {
-		this.Difficulty = difficulty;
+	public Foxy(int difficulty) {
+		super(difficulty);
+		this.tickPeriod = 1900;
 	}
 
-	public static void tick() {
+	// does not have attribute inRoom;
+
+
+
+	public void tick() {
 		if (Office.monitorUp == true && Window.cameraLocation == "Pirate Cove") {
 			return;
 		} else {

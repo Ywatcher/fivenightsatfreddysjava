@@ -1,17 +1,14 @@
-public class Freddy {
-	static int inRoom = 0;
-	private int Difficulty;
-	public static boolean playerdeath = false;
+public class Freddy extends Character{
 
-	public void Bonnie(int Diffuculty) {
-		this.Difficulty = Difficulty;
+	public Freddy(int difficulty) {
+		super(difficulty);
+		this.tickPeriod = 1700;
 	}
 
-	public static int isInRoom() {
-		return inRoom;
-	}
 
-	public static void tick() {
+
+
+	public void tick() {
 
 		if (inRoom == 0 && (Bonnie.inRoom == 0 || Chicka.inRoom == 0)) {
 			return;

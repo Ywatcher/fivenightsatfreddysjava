@@ -1,6 +1,3 @@
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -8,6 +5,8 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JFrame;
 
 public class Main implements Runnable, MouseListener, MouseMotionListener {
+
+	public static CharactersManager characters;
 
 	public static int limit = 200;
 	public static int timer = 3000;
@@ -20,10 +19,7 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 	public static int newsTimer = 0;
 	public static int powerOutTimer = 0;
 	public static int monitorTimer = 0;
-	public static int BonnieTick = 0;
-	public static int ChickaTick = 0;
-	public static int FreddyTick = 0;
-	public static int FoxyTick = 0;
+
 	public static boolean monitorTransition = false;
 	public static int movementRepeater = 0;
 	public static int staticTimer = 0;
@@ -53,6 +49,12 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 	public void run() {
 		while (true) {
 			try {
+				int difficulty = 0; //TODO: some difficulty
+
+				// to init characters
+
+
+
 				Thread.sleep(10);
 				if (death == true) {
 					Window.needStatic = true;
@@ -79,10 +81,7 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 						newsTimer = 0;
 						powerOutTimer = 0;
 						monitorTimer = 0;
-						BonnieTick = 0;
-						ChickaTick = 0;
-						FreddyTick = 0;
-						FoxyTick = 0;
+						characters.clearTick();
 						monitorTransition = false;
 						movementRepeater = 0;
 						staticTimer = 0;
@@ -156,10 +155,7 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 						newsTimer = 0;
 						powerOutTimer = 0;
 						monitorTimer = 0;
-						BonnieTick = 0;
-						ChickaTick = 0;
-						FreddyTick = 0;
-						FoxyTick = 0;
+						characters.clearTick();
 						monitorTransition = false;
 						movementRepeater = 0;
 						staticTimer = 0;
@@ -246,38 +242,7 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 					}
 				}
 				if (Window.startGame == true) {
-					if (BonnieTick < 1000) {
-						BonnieTick++;
-					}
-					if (BonnieTick == 1000) {
-						Bonnie.tick();
-						BonnieTick = 0;
-
-					}
-					if (ChickaTick < 1300) {
-						ChickaTick++;
-					}
-					if (ChickaTick == 1300) {
-						Chicka.tick();
-						ChickaTick = 0;
-
-					}
-					if (FreddyTick < 1700) {
-						FreddyTick++;
-					}
-					if (FreddyTick == 1700) {
-						Freddy.tick();
-						FreddyTick = 0;
-
-					}
-					if (FoxyTick < 1900) {
-						FoxyTick++;
-					}
-					if (FoxyTick == 1900) {
-						Foxy.tick();
-						FoxyTick = 0;
-
-					}
+					characters.timeIncreaseAndTick();
 				}
 				if (move == true && canMove == true) {
 					if (mouseX < 400 && !(Window.officeView + 5 > 0)) {

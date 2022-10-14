@@ -1,17 +1,12 @@
-public class Chicka {
-	static int inRoom = 0;
-	private static int Difficulty;
-	public static boolean playerdeath = false;
+public class Chicka extends Character{
 
-	public void Chicka(int Diffuculty) {
-		this.Difficulty = Difficulty;
+
+	public Chicka(int difficulty) {
+		super(difficulty);
+		this.tickPeriod = 1300;
 	}
 
-	public static int isInRoom() {
-		return inRoom;
-	}
-
-	public static void tick() {
+	public void tick() {
 		if (inRoom == 8 && Office.door2open == true && Office.monitorUp == true) {
 			inRoom = 9;
 			playerdeath = true;
