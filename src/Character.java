@@ -6,8 +6,8 @@ public abstract class Character {
     static int inRoom = 0;
 
     protected int Difficulty;
-    protected int tickPeriod;
-    protected int tickCount;
+    protected int tickPeriod; //
+    protected int tickCount; // character's tick within each period
 
     public static boolean playerdeath = false;
 

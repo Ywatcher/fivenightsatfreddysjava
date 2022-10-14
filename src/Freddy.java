@@ -5,9 +5,6 @@ public class Freddy extends Character{
 		this.tickPeriod = 1700;
 	}
 
-
-
-
 	public void tick() {
 
 		if (inRoom == 0 && (Bonnie.inRoom == 0 || Chicka.inRoom == 0)) {

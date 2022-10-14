@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 public class Main implements Runnable, MouseListener, MouseMotionListener {
 
-	public static CharactersManager characters;
+	public static CharactersManager characters; // manage the info of and control the behaviour of all characters
 
 	public static int limit = 200;
 	public static int timer = 3000;
