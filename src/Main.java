@@ -1,3 +1,7 @@
+
+
+import Environent.Office;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -6,8 +10,9 @@ import javax.swing.JFrame;
 
 public class Main implements Runnable, MouseListener, MouseMotionListener {
 
-	public static CharactersManager characters; // manage the info of and control the behaviour of all characters
-
+	private static CharactersManager characters; // manage the info of and control the behaviour of all characters
+	private Office office;
+	private Window window;
 	public static int limit = 200;
 	public static int timer = 3000;
 	public static boolean isReversed = false;
@@ -51,6 +56,7 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 			try {
 				int difficulty = 0; //TODO: some difficulty
 
+
 				// to init characters
 
 
@@ -67,7 +73,7 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 						Window.needStatic = false;
 						deather = true;
 					}
-					if (deathTimer == 1000) {
+					if (deathTimer == 1000) { //end game
 						death = false;
 						Window.startGame = false;
 						limit = 200;
@@ -109,24 +115,16 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 						Window.freddie = 1;
 						Window.chicka = 1;
 						Window.powerOut = 1;
-						
-						Bonnie.inRoom = 0;
-						Bonnie.playerdeath = false;
-						
-						Chicka.inRoom = 0;
-						Chicka.playerdeath = false;
-						
-						Freddy.inRoom = 0;
-						Freddy.playerdeath = false;
-						
-						Foxy.stage = 0;
-						
-						Office.light1on = false;
-						Office.light2on = false;
-						Office.door1open = true;
-						Office.door2open = true;
-						Office.monitorUp = false;
-						Office.powerRemaining = 100;
+
+
+
+
+						office.light1on = false;
+						office.light2on = false;
+						office.door1open = true;
+						office.door2open = true;
+						office.monitorUp = false;
+						office.powerRemaining = 100;
 					}
 				}
 				if(Window.startGame == true) {
@@ -203,6 +201,7 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 						Office.powerRemaining = 100;
 					}
 				}
+				// TODO move this behaviour inside Foxy
 				if(foxyTime == true) {
 					if(foxyTimeTimer < 50) {
 						foxyTimeTimer++;
@@ -217,6 +216,7 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 						}
 					}
 				}
+				// TODO: move this into Window
 				if (Window.needToMove) {
 					if (Window.cameraPosition == 0 && timer == 2000) {
 						isReversed = false;
@@ -242,9 +242,9 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 					}
 				}
 				if (Window.startGame == true) {
-					characters.timeIncreaseAndTick();
+					characters.timeIncreaseAndTick(null,null); // TODO
 				}
-				if (move == true && canMove == true) {
+				if (move == true && canMove == true) {// moving the perspective in office
 					if (mouseX < 400 && !(Window.officeView + 5 > 0)) {
 						Window.officeView = Window.officeView + 5;
 					} else if (mouseX > 880 && (Window.officeView - 5 > -300)) {
@@ -253,7 +253,7 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 					move = false;
 				}
 
-				if (move == false) {
+				if (move == false) { // ?
 					if (movementRepeater < 1) {
 						movementRepeater++;
 					}
@@ -271,6 +271,7 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 
 					}
 				}
+				// TODO: use kill()
 				if(Chicka.playerdeath == true && Office.monitorUp == false) {
 				if (ChickaTimer < 4) {
 					ChickaTimer++;
@@ -434,130 +435,14 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 				if(Office.monitorUp == true && Window.cameraLocation.equals("West Hall A")) {
 				if (FoxyTimer < 4) {
 					FoxyTimer++;
+					break;
 				}
 				if (FoxyTimer == 4) {
-					switch (Window.Fox) {
-					case 1:
-						Window.Fox = 2;
+					if (Window.Fox<=30 && Window.Fox>=1){
+						Window.Fox ++;
 						FoxyTimer = 0;
-						break;
-					case 2:
-						Window.Fox = 3;
-						FoxyTimer = 0;
-						break;
-					case 3:
-						Window.Fox = 4;
-						FoxyTimer = 0;
-						break;
-					case 4:
-						Window.Fox = 5;
-						FoxyTimer = 0;
-						break;
-					case 5:
-						Window.Fox = 6;
-						FoxyTimer = 0;
-						break;
-					case 6:
-						Window.Fox = 7;
-						FoxyTimer = 0;
-						break;
-					case 7:
-						Window.Fox = 8;
-						FoxyTimer = 0;
-						break;
-					case 8:
-						Window.Fox = 9;
-						FoxyTimer = 0;
-						break;
-					case 9:
-						Window.Fox = 10;
-						FoxyTimer = 0;
-						break;
-					case 10:
-						Window.Fox = 11;
-						FoxyTimer = 0;
-						break;
-					case 11:
-						Window.Fox = 12;
-						FoxyTimer = 0;
-						break;
-					case 12:
-						Window.Fox = 13;
-						FoxyTimer = 0;
-						break;
-					case 13:
-						Window.Fox = 14;
-						FoxyTimer = 0;
-						break;
-					case 14:
-						Window.Fox = 15;
-						FoxyTimer = 0;
-						break;
-					case 15:
-						Window.Fox = 16;
-						FoxyTimer = 0;
-						break;
-					case 16:
-						Window.Fox = 17;
-						FoxyTimer = 0;
-						break;
-					case 17:
-						Window.Fox = 18;
-						FoxyTimer = 0;
-						break;
-					case 18:
-						Window.Fox = 19;
-						FoxyTimer = 0;
-						break;
-					case 19:
-						Window.Fox = 20;
-						FoxyTimer = 0;
-						break;
-					case 20:
-						Window.Fox = 21;
-						FoxyTimer = 0;
-						break;
-					case 21:
-						Window.Fox = 22;
-						FoxyTimer = 0;
-						break;
-					case 22:
-						Window.Fox = 23;
-						FoxyTimer = 0;
-						break;
-					case 23:
-						Window.Fox = 24;
-						FoxyTimer = 0;
-						break;
-					case 24:
-						Window.Fox = 25;
-						FoxyTimer = 0;
-						break;
-					case 25:
-						Window.Fox = 26;
-						FoxyTimer = 0;
-						break;
-					case 26:
-						Window.Fox = 27;
-						FoxyTimer = 0;
-						break;
-					case 27:
-						Window.Fox = 28;
-						FoxyTimer = 0;
-						break;
-					case 28:
-						Window.Fox = 29;
-						FoxyTimer = 0;
-						break;
-					case 29:
-						Window.Fox = 30;
-						FoxyTimer = 0;
-						break;
-					case 30:
-						Window.Fox = 31;
-						FoxyTimer = 0;
-						break;
-					case 31:
+					}
+					else if (FoxyTimer==31){
 						Office.monitorUp = false;
 						Main.foxyTime = true;
 						Window.Fox = 0;
@@ -566,12 +451,12 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 					}
 				}
 				}
-				if(Bonnie.playerdeath == true && Office.monitorUp == false) {
+				if(Bonnie.playerdeath == true && office.monitorUp == false) {
 				if (BonnieTimer < 4) {
 					BonnieTimer++;
 				}
 				if (BonnieTimer == 4) {
-
+					//if (Window.bonnie)
 					switch (Window.bonnie) {
 					case 1:
 						Window.bonnie = 2;
@@ -621,7 +506,7 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 					}
 				}
 				}
-				if(Freddy.playerdeath == true && Office.monitorUp == false) {
+				if(Freddy.playerdeath == true && office.monitorUp == false) {
 				if (FreddyTimer < 4) {
 					FreddyTimer++;
 				}
@@ -743,7 +628,7 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 					}
 				}
 				}
-				if (Office.powerRemaining == 0) {
+				if (office.powerRemaining == 0) {
 					if (powerOutTimer < 4) {
 						powerOutTimer++;
 					}
@@ -826,7 +711,7 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 							powerOutTimer = 0;
 							break;
 						case 20:
-							Office.powerRemaining = -1;
+							office.powerRemaining = -1;
 							Window.powerOut = 0;
 							powerOutTimer = 0;
 							break;
@@ -889,7 +774,7 @@ public class Main implements Runnable, MouseListener, MouseMotionListener {
 						powerTick++;
 					}
 					if (powerTick == 100) {
-						Office.descreasepower();
+						Office.decreasepower();
 						powerTick = 0;
 					}
 				}
