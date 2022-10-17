@@ -3,23 +3,20 @@ package Characters;
 import Characters.Character;
 import Core.FullObservation;
 import Enum.EnumCharacters;
-public class Bonnie {
-	static int inRoom = 0;
-	private static int Difficulty;
-	public static boolean playerdeath = false;
+public class Bonnie extends Character {
 
-	public void Bonnie(int Diffuculty) {
-		this.Difficulty = Difficulty;
+
+	public Bonnie(int difficulty) {
+		super(difficulty);
+		this.name = EnumCharacters.IDBonnie;
+		this.tickPeriod = 1000;
 	}
 
-	public static int isInRoom() {
-		return inRoom;
-	}
+	public void tick(FullObservation obs, tools.Timer timer) {
 
-	public static void tick() {
-		if (inRoom == 8 && Office.door1open == true && Office.monitorUp == true) {
-			inRoom = 9;
-			playerdeath = true;
+		if (state == 8 && obs.isOfficeDoor1Open() && obs.isOfficeMonitorUp()) {
+			state = 9;
+			killPlayer();
 			return;
 		}
 		int rand1 = 1 + (int) (Math.random() * Difficulty);
@@ -28,15 +25,15 @@ public class Bonnie {
 		} else {
 			int rand2 = 1 + (int) (Math.random() * 8);
 			if (rand2 >= 4) {
-				if (rand2 >= inRoom) {
-					if (Chicka.inRoom == inRoom + 1
-							|| Freddy.inRoom == inRoom + 1) {
+				if (rand2 >= state) {
+					if (obs.getChickaState() == state + 1
+							|| obs.getFreddyState() == state + 1) {
 						return;
 					} else {
-						if (inRoom + 1 > 8) {
+						if (state + 1 > 8) {
 							return;
 						} else {
-							inRoom = 1 + inRoom;
+							state = 1 + state;
 						}
 
 					}
@@ -44,24 +41,24 @@ public class Bonnie {
 					return;
 				}
 			} else {
-				if (rand2 >= inRoom) {
-					if (Chicka.inRoom == inRoom + 1
-							|| Freddy.inRoom == inRoom + 1) {
+				if (rand2 >= state) {
+					if (obs.getChickaState() == state + 1
+							|| obs.getFreddyState() == state + 1) {
 						return;
 					} else {
-						if (inRoom + 1 > 8) {
+						if (state + 1 > 8) {
 							return;
 						} else {
-							inRoom = inRoom + 1;
+							state = state + 1;
 						}
 					}
 				} else {
-					if (rand2 == inRoom) {
-						if (Chicka.inRoom == inRoom + 1
-								|| Freddy.inRoom == inRoom + 1) {
+					if (rand2 == state) {
+						if (obs.getChickaState() == state + 1
+								|| obs.getFreddyState() == state + 1) {
 							return;
 						} else {
-							inRoom = inRoom - 1;
+							state = state - 1;
 						}
 						return;
 					}
@@ -71,3 +68,4 @@ public class Bonnie {
 		}
 	}
 }
+
