@@ -2,7 +2,7 @@ package Core;
 
 import Enum.EnumCameras;
 import Enum.EnumDistance;
-import Environent.Office;
+import Environment.Office;
 
 
 public class PlayerObservation {

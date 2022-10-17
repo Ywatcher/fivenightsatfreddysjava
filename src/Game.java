@@ -13,8 +13,8 @@ import Enum.EnumCameras;
 import Enum.EnumEvents;
 import Enum.EnumRooms;
 import Enum.EnumCharacters;
-import Environent.Map;
-import Environent.Office;
+import Environment.Rooms;
+import Environment.Office;
 import tools.Timer;
 
 public class Game implements Observer {
@@ -30,7 +30,7 @@ public class Game implements Observer {
     private final Foxy foxy;
     private final Freddy freddy;
 
-    private final Map map;
+    private final Rooms map;
     private final Office office;
     private final tools.Timer timer;
     private EnumCameras currentCamera;
@@ -58,7 +58,7 @@ public class Game implements Observer {
         // game observes each character
         //init office and other rooms
         office = new Office(); // power = 100
-        map = new Map();
+        map = new Rooms();
         currentCamera = EnumCameras.CAM1A; //
         // current camera cannot be Office
         timer = new Timer(); //TODO

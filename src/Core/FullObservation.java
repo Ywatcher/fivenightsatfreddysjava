@@ -1,6 +1,6 @@
 package Core;
 import Enum.EnumCameras;
-import Environent.Office;
+import Environment.Office;
 
 public class FullObservation {
     /*

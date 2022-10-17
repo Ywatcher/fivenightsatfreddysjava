@@ -1,12 +1,13 @@
 package Characters;
 
-import Characters.Character;
 import Core.FullObservation;
 import Enum.EnumEvents;
 import Enum.EnumCharacters;
 import Enum.EnumRooms;
 import Enum.EnumCameras;
 import tools.Timer;
+
+import java.util.ArrayList;
 
 public class Foxy extends Character {
 
@@ -20,6 +21,12 @@ public class Foxy extends Character {
 		foxyTime = false; //TODO
 		foxyTimeTimer = 0;
 		foxyTimer = 0;
+		this.locations = new ArrayList<>() {{
+			add(EnumRooms.PirateCove);
+			add(EnumRooms.PirateCove);
+			add(EnumRooms.PirateCove);
+			add(EnumRooms.WestHallB);
+		}};
 	}
 
 

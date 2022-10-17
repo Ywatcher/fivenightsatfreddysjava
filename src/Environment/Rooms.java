@@ -1,13 +1,10 @@
-package Environent;
+package Environment;
 
 import Enum.EnumCameras;
 import Enum.EnumRooms;
 import Enum.EnumDistance;
 
-import java.util.Observable;
-import java.util.Observer;
-
-public class Map  {
+public class Rooms {
     /*
     * this class offers the information of room states,
     * and mapping between cameras with rooms.

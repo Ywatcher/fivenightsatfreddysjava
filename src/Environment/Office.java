@@ -1,4 +1,4 @@
-package Environent;
+package Environment;
 
 import java.util.Observable;
 import java.util.Observer;

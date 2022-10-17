@@ -4,7 +4,8 @@ import Core.FullObservation;
 import Enum.EnumEvents;
 import Enum.EnumCharacters;
 import Enum.EnumRooms;
-import java.util.LinkedList;
+
+import java.util.List;
 import java.util.Observable;
 
 public abstract class Character extends Observable {
@@ -14,12 +15,13 @@ public abstract class Character extends Observable {
         this.state = 0;
         // this.playerdeath=0
     }
+
     protected Integer state = 0;
     protected int Difficulty;
     protected int tickPeriod; //
     protected int tickCount; // character's tick within each period
     protected EnumCharacters name;
-    protected LinkedList<EnumRooms> route; // for the case without randomness
+    protected List<EnumRooms> locations; // for the case without randomness
 
     // public boolean playerdeath = false;
 
@@ -31,7 +33,7 @@ public abstract class Character extends Observable {
         return state;
     }
     public EnumRooms getCurrentRoom(){
-        return route.get(state);
+        return locations.get(state);
     }
 
     abstract public void tick(FullObservation obs, tools.Timer timer); //tick strategy

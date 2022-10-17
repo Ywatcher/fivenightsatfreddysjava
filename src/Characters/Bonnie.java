@@ -1,15 +1,28 @@
 package Characters;
 
-import Characters.Character;
 import Core.FullObservation;
 import Enum.EnumCharacters;
-public class Bonnie extends Character {
+import Enum.EnumRooms;
 
+import java.util.ArrayList;
+
+public class Bonnie extends Character {
 
 	public Bonnie(int difficulty) {
 		super(difficulty);
 		this.name = EnumCharacters.IDBonnie;
 		this.tickPeriod = 1000;
+		this.locations = new ArrayList<>() {{
+			add(EnumRooms.ShowStage);
+			add(EnumRooms.DiningArea);
+			add(EnumRooms.DiningAreaClose);
+			add(EnumRooms.Backstage);
+			add(EnumRooms.BackstageClose);
+			add(EnumRooms.WestHallA);
+			add(EnumRooms.SupplyCloset);
+			add(EnumRooms.WestHallB);
+			add(EnumRooms.Office);
+		}};
 	}
 
 	public void tick(FullObservation obs, tools.Timer timer) {
