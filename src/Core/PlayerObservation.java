@@ -12,7 +12,7 @@ public class PlayerObservation {
     */
     public PlayerObservation(
             EnumCameras camera,
-            Integer enviromentState,
+            Integer roomState,
             EnumDistance bonnie,
             EnumDistance chica,
             EnumDistance foxy,
@@ -20,14 +20,14 @@ public class PlayerObservation {
             Office office
             ){
         this.cam = camera;
-        this.enviromentState = enviromentState;
+        this.roomState = roomState;
         this.bonnie = bonnie;
         this.chica = chica;
         this.foxy = foxy;
         this.freddy = freddy;
         this.office = office.copy();
     }
-    private Integer enviromentState; // for some room(pirate room) there are different states
+    private final Integer roomState; // for some room(pirate room) there are different states
     private final EnumCameras cam; // the id of room
     // whether following character in room 0 for none, 1 for far, 2 for close
     private final EnumDistance bonnie;
@@ -54,7 +54,7 @@ public class PlayerObservation {
     }
 
     public Integer getState() {
-        return enviromentState;
+        return roomState;
     }
 
     public Office getOffice() {
@@ -63,7 +63,7 @@ public class PlayerObservation {
     public PlayerObservation copy(){
         return new PlayerObservation(
                 cam,
-                enviromentState,bonnie, chica,foxy,freddy,office
+                roomState,bonnie, chica,foxy,freddy,office
         );
     }
 }

@@ -33,7 +33,7 @@ public class Game implements Observer {
     private final tools.Timer timer;
     private EnumCameras currentCamera;
 
-    private Integer powerOutTimer; // event triggered 4 ticks after powerout
+    private Integer powerOutTimer; // event triggered 4 ticks after power out
 
     private final LinkedList<Character> characters;
 
@@ -81,7 +81,7 @@ public class Game implements Observer {
             if (powerOutTimer<4)
                 powerOutTimer ++;
             else if (office.getPower()==4){
-                powerOutEvent();;
+                powerOutEvent();
             }
         }
         //player.act() is called later outside this class
@@ -165,7 +165,7 @@ public class Game implements Observer {
 
     // camera <- office if current monitor is down
     public PlayerObservation getPlayerObservation(){
-        EnumCameras camera = null;
+        EnumCameras camera;
         if (office.isMonitorUp())
             camera = currentCamera;
         else

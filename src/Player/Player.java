@@ -1,6 +1,6 @@
 package Player;
 
-import Core.Command;
+import tools.Command;
 import Core.PlayerAction;
 import Core.PlayerObservation;
 import Enum.EnumCameras;

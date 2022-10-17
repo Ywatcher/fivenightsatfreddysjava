@@ -1,9 +1,5 @@
 package Environment;
 
-import java.util.Observable;
-import java.util.Observer;
-import Enum.EnumDistance;
-import Enum.EnumRooms;
 
 public class Office {
 	/*

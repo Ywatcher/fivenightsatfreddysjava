@@ -4,7 +4,6 @@ import Core.PlayerObservation;
 import tools.Timer;
 import tools.Graphic;
 
-import javax.swing.*;
 
 public class GUI extends UserInterface {
     @Override

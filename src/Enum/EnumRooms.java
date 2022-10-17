@@ -2,7 +2,7 @@ package Enum;
 
 public enum EnumRooms {
     ShowStage, //0 for b, c, fr
-    DiningArea, //1 for bonnie, chicka, freddy; 2 for b, c close
+    DiningArea, //1 for bonnie, chica, freddy; 2 for b, c close
     DiningAreaClose,
     PirateCove, //0 for fo-0, 1 for fo-1, 2 .. 3 .. (foxy not here at stage 3)
     WestHallA, //5 for b

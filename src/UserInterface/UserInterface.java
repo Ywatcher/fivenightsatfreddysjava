@@ -1,6 +1,6 @@
 package UserInterface;
 
-import Core.Command;
+import tools.Command;
 import Core.PlayerObservation;
 
 public abstract class UserInterface {
