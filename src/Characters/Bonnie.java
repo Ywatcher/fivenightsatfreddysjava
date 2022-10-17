@@ -1,3 +1,8 @@
+package Characters;
+
+import Characters.Character;
+import Core.FullObservation;
+import Enum.EnumCharacters;
 public class Bonnie {
 	static int inRoom = 0;
 	private static int Difficulty;
