@@ -2,7 +2,7 @@ package Enum;
 
 public enum EnumCharacters {
     IDBonnie,
-    IDChicka,
+    IDChica,
     IDFoxy,
     IDFreddy
 }

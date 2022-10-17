@@ -20,6 +20,7 @@ public class AgentPlayer extends Player{
     @Override
     public PlayerAction act(PlayerObservation obs, Timer timer) {
         bestAction = agent.forward(obs,timer);
+        // TODO: skip if time out
         return bestAction.copy();
     }
     protected static abstract class Agent{

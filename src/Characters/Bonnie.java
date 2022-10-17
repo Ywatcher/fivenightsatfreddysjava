@@ -39,7 +39,7 @@ public class Bonnie extends Character {
 			int rand2 = 1 + (int) (Math.random() * 8);
 			if (rand2 >= 4) {
 				if (rand2 >= state) {
-					if (obs.getChickaState() == state + 1
+					if (obs.getChicaState() == state + 1
 							|| obs.getFreddyState() == state + 1) {
 						return;
 					} else {
@@ -55,7 +55,7 @@ public class Bonnie extends Character {
 				}
 			} else {
 				if (rand2 >= state) {
-					if (obs.getChickaState() == state + 1
+					if (obs.getChicaState() == state + 1
 							|| obs.getFreddyState() == state + 1) {
 						return;
 					} else {
@@ -67,7 +67,7 @@ public class Bonnie extends Character {
 					}
 				} else {
 					if (rand2 == state) {
-						if (obs.getChickaState() == state + 1
+						if (obs.getChicaState() == state + 1
 								|| obs.getFreddyState() == state + 1) {
 							return;
 						} else {

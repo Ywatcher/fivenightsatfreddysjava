@@ -4,5 +4,6 @@ public enum EnumEvents {
     Kill,
     Knock,
     ChangeEnvironment,
+    
     // ...
 }

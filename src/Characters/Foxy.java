@@ -68,7 +68,7 @@ public class Foxy extends Character {
 			}
 		}
 		if(obs.isOfficeMonitorUp() && obs.getCurrentCamera().equals(EnumCameras.CAMs2A) && ! running){
-			// when looking at westhallA
+			// when camera looking at westhallA
 			if (foxyTimer < 4)
 				foxyTimer ++;
 			else if (foxyTimer==4){

@@ -13,7 +13,6 @@ public abstract class Character extends Observable {
         this.Difficulty = difficulty;
         this.tickCount = 0;
         this.state = 0;
-        // this.playerdeath=0
     }
 
     protected Integer state = 0;
@@ -22,12 +21,6 @@ public abstract class Character extends Observable {
     protected int tickCount; // character's tick within each period
     protected EnumCharacters name;
     protected List<EnumRooms> locations; // for the case without randomness
-
-    // public boolean playerdeath = false;
-
-    //public int isInRoom() {
-    //    return inRoom;
-    //}
 
     public Integer getState(){
         return state;

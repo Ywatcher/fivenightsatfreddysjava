@@ -6,12 +6,12 @@ import Enum.EnumRooms;
 import java.util.ArrayList;
 
 
-public class Chicka extends Character {
+public class Chica extends Character {
 
 
-	public Chicka(int difficulty) {
+	public Chica(int difficulty) {
 		super(difficulty);
-		this.name = EnumCharacters.IDChicka;
+		this.name = EnumCharacters.IDChica;
 		this.tickPeriod = 1300;
 		this.locations = new ArrayList<>() {{
 			add(EnumRooms.ShowStage);

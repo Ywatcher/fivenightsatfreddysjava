@@ -6,11 +6,10 @@ import Enum.EnumDistance;
 
 public class Rooms {
     /*
-    * this class offers the information of room states,
+    * This class offers the information of room states,
     * and mapping between cameras with rooms.
-    * this class should not contain(or depend on) anything about characters.
+    * This class should not be any aware of characters.
     * */
-
     private Integer pirateCoveStage=0;
 
     public EnumDistance lookFrmCamera(EnumCameras camera, EnumRooms room){

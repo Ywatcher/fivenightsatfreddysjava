@@ -6,7 +6,13 @@ import Enum.EnumDistance;
 import Enum.EnumRooms;
 
 public class Office {
-	// The state of player
+	/*
+	 * The state of an office.
+	 * You do not need specify here whether a
+	 * character is in office, because the other part of
+	 * game will do that regarding office as a mere room
+	 */
+
 	private boolean light1on = false;
 	private boolean light2on = false;
 	private boolean door1open = true;

@@ -14,7 +14,7 @@ public class PlayerObservation {
             EnumCameras camera,
             Integer enviromentState,
             EnumDistance bonnie,
-            EnumDistance chicka,
+            EnumDistance chica,
             EnumDistance foxy,
             EnumDistance freddy,
             Office office
@@ -22,7 +22,7 @@ public class PlayerObservation {
         this.cam = camera;
         this.enviromentState = enviromentState;
         this.bonnie = bonnie;
-        this.chicka = chicka;
+        this.chica = chica;
         this.foxy = foxy;
         this.freddy = freddy;
         this.office = office.copy();
@@ -31,7 +31,7 @@ public class PlayerObservation {
     private final EnumCameras cam; // the id of room
     // whether following character in room 0 for none, 1 for far, 2 for close
     private final EnumDistance bonnie;
-    private final EnumDistance chicka;
+    private final EnumDistance chica;
     private final EnumDistance foxy;
     private final EnumDistance freddy;
     private final Office office;
@@ -39,8 +39,8 @@ public class PlayerObservation {
     public EnumDistance hasBonnie(){
         return bonnie;
     }
-    public EnumDistance hasChicka(){
-        return chicka;
+    public EnumDistance hasChica(){
+        return chica;
     }
     public EnumDistance hasFoxy(){
         return foxy;
@@ -63,7 +63,7 @@ public class PlayerObservation {
     public PlayerObservation copy(){
         return new PlayerObservation(
                 cam,
-                enviromentState,bonnie,chicka,foxy,freddy,office
+                enviromentState,bonnie, chica,foxy,freddy,office
         );
     }
 }

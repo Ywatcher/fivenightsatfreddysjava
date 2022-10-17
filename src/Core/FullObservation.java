@@ -8,7 +8,7 @@ public class FullObservation {
      */
     protected Office office;
     protected Integer bonnieState;
-    protected Integer chickaState;
+    protected Integer chicaState;
     protected Integer foxyState;
     protected Integer freddyState;
 
@@ -19,8 +19,8 @@ public class FullObservation {
         return bonnieState;
     }
 
-    public Integer getChickaState() {
-        return chickaState;
+    public Integer getChicaState() {
+        return chicaState;
     }
 
     public Integer getFoxyState() {
@@ -61,14 +61,14 @@ public class FullObservation {
 
     public FullObservation(
             Integer bonnieState,
-            Integer chickaState,
+            Integer chicaState,
             Integer foxyState,
             Integer freddyState,
             EnumCameras currentCamera,
             Office office
     ){
         this.bonnieState = bonnieState;
-        this.chickaState = chickaState;
+        this.chicaState = chicaState;
         this.foxyState = foxyState;
         this.freddyState = freddyState;
         this.currentCamera = currentCamera;
@@ -77,7 +77,7 @@ public class FullObservation {
     public FullObservation copy(){
         return new FullObservation(
                 bonnieState,
-                chickaState,
+                chicaState,
                 foxyState,
                 freddyState,
                 currentCamera,

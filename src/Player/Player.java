@@ -9,16 +9,53 @@ import UserInterface.UserInterface;
 
 public abstract class Player {
     /*
-    Interface for player movement
-    can be:
-    player - GUI/CLI;
-    AI
+     * Interface for the bahaviour of the player.
+     * The Player can be controlled by either human
+     *  (through GUI / CLI)
+     * or an AI.
+     * Player applies its action by the function
+     *  - public PlayerAction act(PlayerObservation obs, tools.Timer timer)
+     * which is called each game loop by the game controller.
+     * For a human player, this function transmit the game observation
+     * to user interface to display, while reading the action buffer from
+     * last game tick as return value; and the user interfaces will send
+     * new actions here, which is then stored in the buffer for next tick.
+     *
+     * Whether the Player is controlled by human is decided by the attribute
+     *  - Boolean isHuman
+     * which is assigned at init;
+     * If the controller is not human, this Player instance will not let
+     * the user interface to send action when setting it (that means the interface
+     * only displays the game)
      */
-    protected boolean isHuman;
+    protected Boolean isHuman;
     protected UserInterface userInterface;
     protected PlayerAction bestAction;
 
-    // act(perception , tick) ->
+    public abstract PlayerAction act(PlayerObservation obs, tools.Timer timer);
+
+    /* Set here user interface that displays the game.
+     * The player does not have to update the interface
+     * (the game controller will do it)
+     * or to notify it of any events
+     * (the game model will do it).
+     */
+    public void setUserInterface(UserInterface userInterface){
+        this.userInterface = userInterface;
+        if (isHuman){
+            userInterface.setSendingFunctions(
+                    PlayerCommand.monitorOn(this),
+                    PlayerCommand.monitorOff(this),
+                    PlayerCommand.switchMonitor(this),
+                    PlayerCommand.pressDoorButton(this),
+                    PlayerCommand.pressLightButton(this)
+            );
+            // let userInterface observates the game
+        } else {
+            // TODO
+        }
+        // TODO
+    }
 
 
     protected void pressDoorButton(Integer door){
@@ -46,34 +83,6 @@ public abstract class Player {
     protected void switchMonitor(EnumCameras camera){
         //switch monitor to particular room
         bestAction = new PlayerAction(PlayerAction.Type.SwitchMonitor,camera);
-    }
-
-    public abstract PlayerAction act(PlayerObservation obs, tools.Timer timer);
-
-    // Set user interface that displays the game.
-    // If human plays (i.e. isHuman)
-    // en the behaviour of Player instance will be controlled by human player
-    // through user interface;
-    // else the interface does nothing except displaying the current observation
-    // (as the agent plays by itself)
-    //
-    // each time the game event triggered, interface updates and get obs
-    // from Player
-    public void setUserInterface(UserInterface userInterface){
-        this.userInterface = userInterface;
-        if (isHuman){
-            userInterface.setSendingFunctions(
-                    PlayerCommand.monitorOn(this),
-                    PlayerCommand.monitorOff(this),
-                    PlayerCommand.switchMonitor(this),
-                    PlayerCommand.pressDoorButton(this),
-                    PlayerCommand.pressLightButton(this)
-            );
-            // let userInterface observates the game
-        } else {
-            // TODO
-        }
-        // TODO
     }
 
     // inner class PlayerCommand:

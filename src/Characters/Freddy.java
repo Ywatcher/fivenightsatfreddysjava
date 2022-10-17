@@ -21,7 +21,7 @@ public class Freddy extends Character {
 
     public void tick(FullObservation obs, tools.Timer timer) {
 
-        if (state == 0 && (obs.getBonnieState() == 0 || obs.getChickaState() == 0)) {
+        if (state == 0 && (obs.getBonnieState() == 0 || obs.getChicaState() == 0)) {
             return;
         }
         if (obs.isOfficeDoor1Open() && obs.isOfficeDoor2Open() && state == 4) {
@@ -34,14 +34,14 @@ public class Freddy extends Character {
         } else {
             if (state != 4) {
 
-                if (obs.getChickaState() == state + 1 || obs.getBonnieState() == state + 1) {
+                if (obs.getChicaState() == state + 1 || obs.getBonnieState() == state + 1) {
                     return;
                 } else {
                     state = state + 1;
                     return;
                 }
             } else {
-                if (obs.getChickaState() == state + 1 || obs.getBonnieState() == state + 1) {
+                if (obs.getChicaState() == state + 1 || obs.getBonnieState() == state + 1) {
                     return;
                 } else {
                     state = state - 1;

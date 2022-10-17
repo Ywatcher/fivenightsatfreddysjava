@@ -1,14 +1,17 @@
 import java.util.Observable;
 import java.util.Observer;
 import java.util.LinkedList;
-import Characters.Bonnie;
+
 import Characters.Character;
-import Characters.Chicka;
+import Characters.Bonnie;
+import Characters.Chica;
 import Characters.Foxy;
 import Characters.Freddy;
+
+import Core.PlayerObservation;
 import Core.FullObservation;
 import Core.PlayerAction;
-import Core.PlayerObservation;
+
 import Enum.EnumCameras;
 import Enum.EnumEvents;
 import Enum.EnumRooms;
@@ -19,14 +22,9 @@ import tools.Timer;
 
 public class Game implements Observer {
 
-    // characters states - their positions
-    // state of maps
-    // state of office
-    //
-
     private final int difficulty;
     private final Bonnie bonnie;
-    private final Chicka chicka;
+    private final Chica chica;
     private final Foxy foxy;
     private final Freddy freddy;
 
@@ -49,14 +47,14 @@ public class Game implements Observer {
         bonnie = new Bonnie(difficulty);
         characters = new LinkedList<>();
         characters.add(bonnie);
-        chicka = new Chicka(difficulty);
-        characters.add(chicka);
+        chica = new Chica(difficulty);
+        characters.add(chica);
         foxy = new Foxy(difficulty);
         characters.add(foxy);
         freddy = new Freddy(difficulty);
         characters.add(freddy);
         // game observes each character
-        //init office and other rooms
+        // init office and other rooms
         office = new Office(); // power = 100
         map = new Rooms();
         currentCamera = EnumCameras.CAM1A; //
@@ -133,7 +131,7 @@ public class Game implements Observer {
 
     @Override
     public void update(Observable o, Object arg) { // immediate response upon character behaviours
-        //kill; -> an event to interface
+        //->sent  an event to interface
         Enum[] message = (Enum[]) arg;
         EnumEvents event = (EnumEvents) message[0];
         switch (event) {
@@ -155,7 +153,6 @@ public class Game implements Observer {
                 assert (false);
             }
         }
-
     }
 
 
@@ -166,7 +163,7 @@ public class Game implements Observer {
     }
 
 
-    // Office if current camera be
+    // camera <- office if current monitor is down
     public PlayerObservation getPlayerObservation(){
         EnumCameras camera = null;
         if (office.isMonitorUp())
@@ -177,7 +174,7 @@ public class Game implements Observer {
                 camera,
                 map.environmentState(camera),
                 map.lookFrmCamera(camera,bonnie.getCurrentRoom()),
-                map.lookFrmCamera(camera,chicka.getCurrentRoom()),
+                map.lookFrmCamera(camera, chica.getCurrentRoom()),
                 map.lookFrmCamera(camera,foxy.getCurrentRoom()),
                 map.lookFrmCamera(camera,freddy.getCurrentRoom()),
                 office
@@ -187,7 +184,7 @@ public class Game implements Observer {
     public FullObservation getFullObservation(){
         return new FullObservation(
                 bonnie.getState(),
-                chicka.getState(),
+                chica.getState(),
                 foxy.getState(),
                 freddy.getState(),
                 currentCamera,
