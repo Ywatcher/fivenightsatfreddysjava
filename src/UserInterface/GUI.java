@@ -2,6 +2,7 @@ package UserInterface;
 
 import Core.PlayerObservation;
 import tools.Timer;
+import tools.Graphic;
 
 import javax.swing.*;
 
@@ -34,16 +35,7 @@ public class GUI extends UserInterface {
     the process of playing different animations should be abstract
      */
 
-    private class GUIGraphic extends JPanel{
+    private static class GUIGraphic extends Graphic{
 
     }
-
-    private class GraphicObject{
-
-        GraphicObject(){
-
-        }
-    }
-
-
 }
