@@ -1,47 +1,44 @@
-package Characters;
-import Characters.Character;
-import Core.FullObservation;
-import Enum.EnumCharacters;
+public class Freddy {
+	static int inRoom = 0;
+	private int Difficulty;
+	public static boolean playerdeath = false;
 
-public class Freddy extends Character {
+	public void Bonnie(int Diffuculty) {
+		this.Difficulty = Difficulty;
+	}
 
-    public Freddy(int difficulty) {
-        super(difficulty);
-        this.name = EnumCharacters.IDFreddy;
-        this.tickPeriod = 1700;
-    }
+	public static int isInRoom() {
+		return inRoom;
+	}
 
-    public void tick(FullObservation obs, tools.Timer timer) {
+	public static void tick() {
 
-        if (state == 0 && (obs.getBonnieState() == 0 || obs.getChickaState() == 0)) {
-            return;
-        }
-        if (obs.isOfficeDoor1Open() && obs.isOfficeDoor2Open() && state == 4) {
-            //if (Environent.Office.door2open == true) {
-            //    killPlayer();
-            //    state = 5;
-            //}
-            killPlayer();
-            state = 5;
-        } else {
-            if (state != 4) {
+		if (inRoom == 0 && (Bonnie.inRoom == 0 || Chicka.inRoom == 0)) {
+			return;
+		}
+		if (Office.monitorUp == true && Office.door2open == true && inRoom == 4) {
+			if (Office.door2open == true) {
+				playerdeath = true;
+				inRoom = 5;
+			}
+		} else {
+			if (inRoom != 4) {
 
-                if (obs.getChickaState() == state + 1 || obs.getBonnieState() == state + 1) {
-                    return;
-                } else {
-                    state = state + 1;
-                    return;
-                }
-            } else {
-                if (obs.getChickaState() == state + 1 || obs.getBonnieState() == state + 1) {
-                    return;
-                } else {
-                    state = state - 1;
-                    return;
-                }
-            }
+				if (Chicka.inRoom == inRoom + 1 || Bonnie.inRoom == inRoom + 1) {
+					return;
+				} else {
+					inRoom = inRoom + 1;
+					return;
+				}
+			} else {
+				if (Chicka.inRoom == inRoom + 1 || Bonnie.inRoom == inRoom + 1) {
+					return;
+				} else {
+					inRoom = inRoom - 1;
+					return;
+				}
+			}
 
-        }
-    }
+		}
+	}
 }
-

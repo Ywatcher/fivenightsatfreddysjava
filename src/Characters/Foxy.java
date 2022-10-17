@@ -1,96 +1,33 @@
-package Characters;
+public class Foxy {
 
-import Characters.Character;
-import Core.FullObservation;
-import Enum.EnumEvents;
-import Enum.EnumCharacters;
-import Enum.EnumRooms;
-import Enum.EnumCameras;
-import tools.Timer;
-
-public class Foxy extends Character {
-
+	private int Difficulty;
+	static int stage = 0;
 	private boolean seen;
 	private double startTime;
+	public static boolean playerdeath = false;
 
-	public Foxy(int difficulty) {
-		super(difficulty);
-		this.name = EnumCharacters.IDFoxy;
-		this.tickPeriod = 1900;
-		foxyTime = false; //TODO
-		foxyTimeTimer = 0;
-		foxyTimer = 0;
+	private void foxy(int difficulty) {
+		this.Difficulty = difficulty;
 	}
 
-
-	// temp ---
-	private Boolean foxyTime;
-	private Integer foxyTimeTimer;
-	private Integer foxyTimer;
-	private Boolean running;
-	private Integer foxyRunTimer; //TODO: to use tools.Timer
-	// ----
-
-	public void tick(FullObservation obs, tools.Timer timer) {
-		if (obs.isOfficeMonitorUp() && obs.getCurrentCamera() == EnumCameras.CAM1C) {
+	public static void tick() {
+		if (Office.monitorUp == true && Window.cameraLocation == "Pirate Cove") {
 			return;
 		} else {
-			if (state != 3) {
-				state = state + 1;
-				notifyObservers(new Enum[]{EnumEvents.ChangeEnvironment, EnumRooms.PirateCove}); // change the stage
+			if (stage != 3) {
+				stage = stage + 1;
 			} else {
-				if (!obs.isOfficeDoor1Open()) {
-					state = 1;
-					knockDoor();
+				if (Office.door1open == false) {
+					stage = 1;
+					Window.knock.play();
 				} else {
-					killPlayer();
+					playerdeath = true;
 				}
 			}
 		}
 	}
 
-	@Override
-	public void forward(FullObservation obs, Timer timer) {
-		super.forward(obs, timer);
-		if (running) { // todo : restyle
-			if (foxyRunTimer<30){
-				foxyRunTimer ++;
-			}
-			else if (foxyRunTimer == 30){
-				foxyTime = true;
-			}
-		}
-		if(obs.isOfficeMonitorUp() && obs.getCurrentCamera().equals(EnumCameras.CAMs2A) && ! running){
-			// when looking at westhallA
-			if (foxyTimer < 4)
-				foxyTimer ++;
-			else if (foxyTimer==4){
-				run();
-				running = true;
-				foxyTimer = 0;
-			}
-		}
-		if (foxyTime){
-			if (foxyTimeTimer<50)
-				foxyTimeTimer ++;
-			else if (foxyTimeTimer==50) {
-				if (obs.isOfficeDoor1Open()) {
-					killPlayer();
-				}
-				else {
-					knockDoor();;
-					state = 1;
-					foxyTime = false;
-				}
-			}
-		}
-	}
-
-	protected void knockDoor(){
-		notifyObservers(new Enum[]{EnumEvents.Knock}); //Window.knock.play();
-	}
-
-	protected void run(){
-		// event: FoxyRun
+	static int getStage() {
+		return stage;
 	}
 }
